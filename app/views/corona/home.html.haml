@@ -1,0 +1,16 @@
+.container-fluid
+  .mb-4
+  = render partial: "top_stats", locals: { active_cases: @countries.readable_total_active,
+                                           mortality_rate: @countries.mortality_rate,
+                                           recovery_rate: @countries.recovery_rate,
+                                           total_confirmed: @countries.readable_total_confirmed,
+                                           total_deaths: @countries.readable_total_deaths,
+                                           total_recovered: @countries.readable_total_recovered }
+
+  .mb-4
+  = render partial: "country_details", locals: { countries: @countries }
+
+  .mb-4
+  = render partial: "stats", locals: { comparisons_chart_data: @countries.comparisons_chart_data,
+                                       counts_chart_data: @countries.counts_chart_data,
+                                       pie_chart_data: @countries.pie_chart_data }

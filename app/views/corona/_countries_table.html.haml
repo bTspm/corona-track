@@ -1,0 +1,38 @@
+%table#countries-data-table.display.table.table-hover.table-dark.table-striped
+  %thead
+    %tr
+      %th.text-white Country / Other
+      %th.d-none.country-for-sort
+      %th.d-none.country-alpha2-for-search
+      %th.d-none.country-alpha3-for-search
+      %th.text-white Confirmed
+      %th.text-white New Cases
+      %th.text-white Recovered
+      %th.text-white New Recovered
+      %th.text-white Deaths
+      %th.text-white New Deaths
+      %th.text-white Mortality Rate
+  %tbody
+    - countries.each do |country|
+      %tr
+        %td
+          .row
+            .col-12.d-flex.flex-row.align-items-center
+              %h5= flag(country.alpha2)
+              .pl-2
+                .text-left= country.name
+        %td.d-none.country-for-sort= country.name
+        %td.d-none.country-alpha2-for-search= country.alpha2
+        %td.d-none.country-alpha3-for-search= country.alpha3
+        %td.text-white= country.readable_total_confirmed
+        %td.text-info= country.new_cases
+        %td.text-white= country.readable_total_recovered
+        %td.text-success= country.new_recovered
+        %td.text-white= country.readable_total_deaths
+        %td.text-danger= country.new_deaths
+        %td.text-white= country.readable_mortality_rate
+
+:javascript
+  $(document).ready(function() {
+    Table.initTable();
+  });

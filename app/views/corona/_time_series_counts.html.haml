@@ -1,0 +1,6 @@
+%div#time-series-counts-container{style: 'height:350px; width:100%'}
+
+:javascript
+  $(document).ready(function() {
+      TimeSeries.initChart(JSON.parse('#{raw(chart_data.to_json)}'), "time-series-counts-container");
+  });
