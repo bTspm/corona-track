@@ -1,0 +1,12 @@
+%footer.py-4.bg-dark.flex-shrink-0
+  .container.text-white.text-center
+    Copyright
+    = link_to "https://github.com/bTspm/corona-track", target: "_blank" do
+      %i.fab.fa-github
+      bTspm
+    = Time.now.year
+    %div
+      Data retrieved from
+      = link_to "@pomber", "https://github.com/pomber", target: "_blank"
+      = " Built with"
+      = link_to("HighCharts", "https://highcharts.com", target: "_blank")
