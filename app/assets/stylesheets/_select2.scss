@@ -1,0 +1,25 @@
+.select2 {
+  width: 100%!important; /* force fluid responsive */
+}
+
+.select2-container {
+  .select2-selection--single {
+    height: 56px;
+    position: relative;
+
+    .select2-selection__rendered {
+      line-height: 56px;
+    }
+
+    .select2-selection__arrow {
+      top: 16px;
+      right: 8px;
+    }
+
+    .select2-container--default {
+      .select2-results>.select2-results__options {
+        -webkit-overflow-scrolling: touch; /* use momentum scrolling */
+      }
+    }
+  }
+}
