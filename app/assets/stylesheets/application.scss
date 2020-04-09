@@ -18,36 +18,3 @@ body {
   background-color: #282e38
 }
 
-.container-fluid {
-  padding-top: 3rem;
-  width: 90%
-}
-
-@media screen and (max-width: 992px) {
-  .container-fluid {
-    width: 100%
-  }
-}
-
-th {
-  font-size: 0.8rem;
-  text-align: center;
-}
-
-td {
-  font-size: 0.8rem;
-  text-align: center;
-}
-
-.card {
-  background-color: #343a40;
-  color: white;
-}
-
-table.dataTable.table-striped.DTFC_Cloned tbody tr:nth-of-type(even) {
-  background-color: #343a40;
-}
-
-table.dataTable.table-striped.DTFC_Cloned th {
-  background-color: #343a40;
-}
