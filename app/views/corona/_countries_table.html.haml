@@ -1,36 +1,40 @@
-%table#countries-data-table.display.table.table-hover.table-dark.table-striped
+%table#countries-data-table.display.table.table-hover.table-dark.w-100.table-sm
   %thead
     %tr
-      %th.text-white Country / Other
+      %th.w-12-5.text-white Country / Other
       %th.d-none.country-for-sort
       %th.d-none.country-alpha2-for-search
       %th.d-none.country-alpha3-for-search
+      %th.d-none.country-unofficial-names-for-search
       %th.text-white Confirmed
       %th.text-white New Cases
-      %th.text-white Recovered
-      %th.text-white New Recovered
       %th.text-white Deaths
       %th.text-white New Deaths
+      %th.text-white Recovered
+      %th.text-white Critical
+      %th.text-white Tests
       %th.text-white Mortality Rate
   %tbody
-    - countries.each do |country|
+    - data.each do |corona_data_item|
       %tr
         %td
           .row
             .col-12.d-flex.flex-row.align-items-center
-              %h5= flag(country.alpha2)
+              %h6= flag(corona_data_item.region_data.alpha2)
               .pl-2
-                .text-left= country.name
-        %td.d-none.country-for-sort= country.name
-        %td.d-none.country-alpha2-for-search= country.alpha2
-        %td.d-none.country-alpha3-for-search= country.alpha3
-        %td.text-white= country.readable_total_confirmed
-        %td.text-info= country.new_cases
-        %td.text-white= country.readable_total_recovered
-        %td.text-success= country.new_recovered
-        %td.text-white= country.readable_total_deaths
-        %td.text-danger= country.new_deaths
-        %td.text-white= country.readable_mortality_rate
+                .text-left= corona_data_item.region_data.formatted_name
+        %td.d-none.country-for-sort= corona_data_item.region_data.name
+        %td.d-none.country-alpha2-for-search= corona_data_item.region_data.alpha2
+        %td.d-none.country-alpha3-for-search= corona_data_item.region_data.alpha3
+        %td.d-none.country-unofficial-names-for-search= corona_data_item.region_data.formatted_unofficial_names
+        %td.text-info= corona_data_item.stats.readable_confirmed
+        %td.bg-info= corona_data_item.stats.readable_new_confirmed
+        %td.text-danger= corona_data_item.stats.readable_deaths
+        %td.bg-danger= corona_data_item.stats.readable_new_deaths
+        %td.text-success= corona_data_item.stats.readable_recovered
+        %td.text-warning= corona_data_item.stats.readable_critical
+        %td.text-primary= corona_data_item.stats.readable_tests
+        %td.text-white= corona_data_item.stats.readable_mortality_rate
 
 :javascript
   $(document).ready(function() {

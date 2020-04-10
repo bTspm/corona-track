@@ -1,16 +1,26 @@
 .container-fluid
+  -# = render partial: "corona/countries_dropdown", locals: { countries_for_select: @countries.for_select }
   .mb-4
-  = render partial: "top_stats", locals: { active_cases: @countries.readable_total_active,
-                                           mortality_rate: @countries.mortality_rate,
-                                           recovery_rate: @countries.recovery_rate,
-                                           total_confirmed: @countries.readable_total_confirmed,
-                                           total_deaths: @countries.readable_total_deaths,
-                                           total_recovered: @countries.readable_total_recovered }
+  = render partial: "top_stats", locals: { stats: @corona_data.stats }
 
-  .mb-4
-  = render partial: "country_details", locals: { countries: @countries }
+  .row
+    .col-md-12.col-lg-8
+      .card.mb-2
+        .card-header
+          Country / Other Stats
+        .card-body
+          = render_async corona_countries_stats_path
 
-  .mb-4
-  = render partial: "stats", locals: { comparisons_chart_data: @countries.comparisons_chart_data,
-                                       counts_chart_data: @countries.counts_chart_data,
-                                       pie_chart_data: @countries.pie_chart_data }
+    .col-md-12.col-lg-4
+      %div
+        .card.mb-2
+          .card-header
+            Time Series
+          .card-body
+            = render_async corona_global_time_series_path
+      %div
+        .card.mb-2
+          .card-header
+            Recovery vs Mortality Rate
+          .card-body
+            = render partial: "pie_chart", locals: { chart_data: @corona_data.stats.pie_chart_data }

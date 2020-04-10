@@ -1,17 +1,21 @@
 class CoronaService
-  def countries
-    response = Api::Client.new.get
-    countries = _update_country_names(response.body)
-    countries.map do |country, stats|
-      CountryData.from_github_response(country_code_or_name: country, stats: stats)
-    end
+  def latest_global_stats
+    _ninja_store.latest_global_stats
   end
 
-  def country_by_code(code)
-    countries.detect { |country| country.alpha3 == code }
+  def global_time_series
+    _ninja_store.global_time_series
+  end
+
+  def latest_countries_stats
+    _ninja_store.latest_countries_stats
   end
 
   private
+
+  def _ninja_store
+    ::NinjaStore.new
+  end
 
   def _country_keys
     {

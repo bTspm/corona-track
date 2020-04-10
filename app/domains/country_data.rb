@@ -1,23 +1,26 @@
-class CountryData
+class CountryData < RegionData
   attr_reader :alpha2,
               :alpha3,
               :name,
-              :stats
+              :unofficial_names
 
   def initialize(args = {})
+    args.merge!({ is_country: true })
+    super(args)
     @alpha2 = args[:alpha2]
     @alpha3 = args[:alpha3]
-    @name = args[:name]
-    @stats = args[:stats]
+    @unofficial_names = args[:unofficial_names]
   end
 
-  def self.from_github_response(country_code_or_name:, stats:)
+  def self.from_ninja_response(response)
+    country_code_or_name = response.dig("countryInfo", "iso2") || response[:country]
     country = _country_by_name_or_code(country_code_or_name)
+
     args = {
-      alpha2: country&.alpha2,
-      alpha3: country&.alpha3,
+      alpha2: country&.alpha2 || response.dig("countryInfo", "iso2"),
+      alpha3: country&.alpha3 || response.dig("countryInfo", "iso3"),
       name: country&.name || country_code_or_name,
-      stats: stats.map { |stat_response| Stat.from_github_response(stat_response) },
+      unofficial_names: country&.unofficial_names
     }
 
     new(args)
@@ -25,6 +28,10 @@ class CountryData
 
   def mortality_rate
     _latest_stat.mortality_rate
+  end
+
+  def not_country?
+    alpha2.blank?
   end
 
   def total_active
@@ -44,7 +51,9 @@ class CountryData
   end
 
   def self._country_by_name_or_code(name_or_code)
-    Country.find_country_by_name(name_or_code) || Country[name_or_code]
+    Country.find_country_by_name(name_or_code) ||
+      Country[name_or_code] ||
+      Country.find_country_by_alpha3(name_or_code)
   end
 
   private_class_method :_country_by_name_or_code

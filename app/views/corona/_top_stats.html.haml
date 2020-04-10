@@ -1,6 +1,6 @@
 .row.text-center
   .col-xs-12.col-sm-6.col-md.mb-2
-    .card.shadow-lg.text-info
+    .card.shadow-lg.card-info
       .card-content
         .card-body
           %span
@@ -8,10 +8,10 @@
               %i.fas.fa-head-side-cough
             Confirmed
           %div
-            %h3= total_confirmed
+            %h3= stats.readable_confirmed
 
   .col-xs-12.col-sm-6.col-md.mb-2
-    .card.shadow-lg.text-warning
+    .card.shadow-lg.card-warning
       .card-content
         .card-body
           %span
@@ -19,10 +19,10 @@
               %i.fas.fa-hospital-user
             Active
           %div
-            %h3= active_cases
+            %h3= stats.readable_active
 
   .col-xs-12.col-sm-6.col-md.mb-2
-    .card.shadow-lg.text-success
+    .card.shadow-lg.card-success
       .card-content
         .card-body
           %span
@@ -30,21 +30,21 @@
               %i.fas.fa-running
             Recovered
           %div
-            %h3= total_recovered
+            %h3= stats.readable_recovered
 
   .col-xs-12.col-sm-6.col-md.mb-2
-    .card.shadow-lg.text-primary
+    .card.shadow-lg.card-primary
       .card-content
         .card-body
           %span
             %h3
               %i.fas.fa-ambulance
-            Recovery Rate
+            Tests
           %div
-            %h3= recovery_rate
+            %h3= stats.readable_tests
 
   .col-xs-12.col-sm-6.col-md.mb-2
-    .card.shadow-lg.text-danger
+    .card.shadow-lg.card-danger
       .card-content
         .card-body
           %span
@@ -52,10 +52,10 @@
               %i.fas.fa-procedures
             Deaths
           %div
-            %h3= total_deaths
+            %h3= stats.readable_deaths
 
   .col-xs-12.col-sm-6.col-md.mb-2
-    .card.shadow-lg.text-white
+    .card.shadow-lg.card-white
       .card-content
         .card-body
           %span
@@ -63,4 +63,4 @@
               %i.fas.fa-skull-crossbones
             Mortality Rate
           %div
-            %h3= mortality_rate
+            %h3= stats.readable_mortality_rate

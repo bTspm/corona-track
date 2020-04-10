@@ -1,4 +1,42 @@
 .card {
   background-color: #343a40;
-  color: white;
+
+  .card-header {
+    color: white;
+  }
+
+   &.card-info {
+    border-bottom-color: #17a2b8;
+    color: #17a2b8
+  }
+
+  &.card-danger {
+    border-bottom-color: #dc3545;
+    color: #dc3545
+  }
+
+  &.card-success {
+    border-bottom-color: #28a745;
+    color: #28a745
+  }
+
+  &.card-white {
+    border-bottom-color: white;
+    color: white
+  }
+
+  &.card-primary {
+    border-bottom-color: #007bff;
+    color: #007bff
+  }
+
+  &.card-warning {
+    border-bottom-color: #ffc107;
+    color: #ffc107
+  }
+
+  &.card-yellow {
+    border-bottom-color: yellow;
+    color: yellow
+  }
 }

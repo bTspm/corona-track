@@ -1,0 +1,15 @@
+.container-fluid
+  = render partial: "corona/countries_dropdown", locals: { countries_for_select: @countries.for_select }
+  .mb-4
+  = render partial: "top_stats", locals: { active_cases: @country.readable_total_active,
+                                           mortality_rate: @country.mortality_rate,
+                                           recovery_rate: @country.recovery_rate,
+                                           total_confirmed: @country.readable_total_confirmed,
+                                           total_deaths: @country.readable_total_deaths,
+                                           total_recovered: @country.readable_total_recovered }
+
+  .mb-4
+  = render partial: "stats", locals: { comparisons_chart_data: @country.comparisons_chart_data,
+                                       counts_chart_data: @country.counts_chart_data,
+                                       map_data: @country.map_data,
+                                       pie_chart_data: @country.pie_chart_data }
