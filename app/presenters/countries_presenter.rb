@@ -11,6 +11,11 @@ class CountriesPresenter
       }.with_indifferent_access
     end
 
+    def mortality_rate
+      value = (total_deaths / total_confirmed.to_f) * 100
+      h.number_to_percentage(value, precision: 2)
+    end
+
     def name_with_flag
       return name if alpha2.blank?
 
@@ -52,6 +57,11 @@ class CountriesPresenter
       h.number_with_delimiter total_recovered
     end
 
+    def recovery_rate
+      value = (total_recovered / total_confirmed.to_f) * 100
+      h.number_to_percentage(value, precision: 2)
+    end
+
     private
 
     def _previous_day_stats
@@ -84,6 +94,10 @@ class CountriesPresenter
 
     def comparisons_chart_data
       [_time_series_mortality_rate, _time_series_recovery_rate]
+    end
+
+    def for_select
+      reject(&:not_country?).sort_by { |country| country.name.downcase }
     end
 
     def counts_chart_data
@@ -123,15 +137,6 @@ class CountriesPresenter
     def recovery_rate
       value = (_total_recovered / _total_confirmed.to_f) * 100
       h.number_to_percentage(value, precision: 2)
-    end
-
-    def pie_chart_data
-      data = [
-        { color: "#ffc107", name: "Active", y: _total_active },
-        { color: "#dc3545", name: "Deaths", y: _total_deaths },
-        { color: "#28a745", name: "Recovered", y: _total_recovered }
-      ]
-      [{ name: "Cases", colorByPoint: true, data: data }]
     end
 
     private

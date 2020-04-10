@@ -4,11 +4,11 @@
       .card-header
         Country / Other Stats
       .card-body
-        = render partial: "countries_table", locals: { countries: countries }
+        = render partial: "countries_table", locals: { data: corona_data }
 
   .col-xs-12.col-sm-12.col-md-5
     .card.mb-2
       .card-header
         World Map of Cases
       .card-body
-        = render partial: "map", locals: { map_data: countries.map_data }
+        -# = render partial: "map", locals: { map_data: countries.map_data }

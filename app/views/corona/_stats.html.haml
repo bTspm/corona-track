@@ -1,19 +1,10 @@
 .row
-  .col-md
-    .card.mb-2
-      .card-header
-        Time Series Counts
-      .card-body
-        = render partial: "time_series_counts", locals: { chart_data: counts_chart_data }
-  .col-md
+  .col-md-8
+    = render_async corona_global_time_series_stats_path_path
+
+  .col-md-4
     .card.mb-2
       .card-header
         Recovery vs Mortality Rate
       .card-body
-        = render partial: "time_series_comparisons", locals: { chart_data: comparisons_chart_data }
-  .col-md
-    .card.mb-2
-      .card-header
-        Recovery vs Mortality Rate
-      .card-body
-      = render partial: "pie_chart", locals: { chart_data: pie_chart_data }
+        = render partial: "pie_chart", locals: { chart_data: pie_chart_data }

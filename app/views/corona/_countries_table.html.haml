@@ -7,30 +7,30 @@
       %th.d-none.country-alpha3-for-search
       %th.text-white Confirmed
       %th.text-white New Cases
-      %th.text-white Recovered
-      %th.text-white New Recovered
       %th.text-white Deaths
       %th.text-white New Deaths
+      %th.text-white Recovered
+      %th.text-white Critical
       %th.text-white Mortality Rate
   %tbody
-    - countries.each do |country|
+    - data.each do |corona_data_item|
       %tr
         %td
           .row
             .col-12.d-flex.flex-row.align-items-center
-              %h5= flag(country.alpha2)
+              %h5= flag(corona_data_item.region_data.alpha2)
               .pl-2
-                .text-left= country.name
-        %td.d-none.country-for-sort= country.name
-        %td.d-none.country-alpha2-for-search= country.alpha2
-        %td.d-none.country-alpha3-for-search= country.alpha3
-        %td.text-white= country.readable_total_confirmed
-        %td.text-info= country.new_cases
-        %td.text-white= country.readable_total_recovered
-        %td.text-success= country.new_recovered
-        %td.text-white= country.readable_total_deaths
-        %td.text-danger= country.new_deaths
-        %td.text-white= country.readable_mortality_rate
+                .text-left= corona_data_item.region_data.name
+        %td.d-none.country-for-sort= corona_data_item.region_data.name
+        %td.d-none.country-alpha2-for-search= corona_data_item.region_data.alpha2
+        %td.d-none.country-alpha3-for-search= corona_data_item.region_data.alpha3
+        %td.text-white= corona_data_item.stats.confirmed
+        %td.text-info= corona_data_item.stats.new_confirmed
+        %td.text-white= corona_data_item.stats.deaths
+        %td.text-danger= corona_data_item.stats.new_deaths
+        %td.text-white= corona_data_item.stats.recovered
+        %td.text-white= corona_data_item.stats.critical
+        %td.text-white= corona_data_item.stats.mortality_rate
 
 :javascript
   $(document).ready(function() {

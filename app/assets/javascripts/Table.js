@@ -6,7 +6,7 @@ var Table = {
             order: [[4, "desc"]],
             paging: false,
             scrollCollapse: true,
-            scrollY: 350,
+            // scrollY: 350,
             scrollX: true,
         });
     },
