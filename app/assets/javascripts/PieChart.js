@@ -1,6 +1,6 @@
 var PieChart = {
     initChart: function (data) {
-        Highcharts.chart("pie-chart-container", {
+        Highcharts.chart("rate-distribution-container", {
             accessibility: {
                 point: {
                     valueSuffix: "%",

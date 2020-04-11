@@ -15,4 +15,4 @@
           .card-header
             Rate Distribution
           .card-body
-            = render partial: "pie_chart", locals: { chart_data: @corona_data.stats.pie_chart_data }
+            = render partial: "rate_distribution", locals: { chart_data: @corona_data.stats.pie_chart_data }
