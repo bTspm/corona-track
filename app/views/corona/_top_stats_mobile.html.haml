@@ -4,20 +4,21 @@
     %small.float-right
       = stats.formatted_last_updated
   .card-body
-    %table.table.table-dark.table-bordered.table-responsive
-      %tbody
-        %tr
-          %td Confirmed
-          %td.text-info= stats.readable_confirmed
-          %td Critical
-          %td.text-warning= stats.readable_critical
-        %tr
-          %td Recovered
-          %td.text-success= stats.readable_recovered
-          %td Tests
-          %td.text-primary= stats.readable_tests
-        %tr
-          %td Deaths
-          %td.text-danger= stats.readable_deaths
-          %td Mortality
-          %td.text-white= stats.readable_mortality_rate
+    .table-responsive
+      %table.table.table-dark.table-bordered.w-100
+        %tbody
+          %tr
+            %td Confirmed
+            %td.text-info= stats.readable_confirmed
+            %td Critical
+            %td.text-warning= stats.readable_critical
+          %tr
+            %td Recovered
+            %td.text-success= stats.readable_recovered
+            %td Tests
+            %td.text-primary= stats.readable_tests
+          %tr
+            %td Deaths
+            %td.text-danger= stats.readable_deaths
+            %td Mortality
+            %td.text-white= stats.readable_mortality_rate

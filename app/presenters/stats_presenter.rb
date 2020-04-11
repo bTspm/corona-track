@@ -6,6 +6,12 @@ class StatsPresenter
       @chart_formatted_date ||= datetime.to_datetime.to_i * 1000
     end
 
+    def formatted_last_updated
+      return "" if datetime.blank?
+
+      "Last Updated: #{h.time_ago_in_words datetime} ago"
+    end
+
     def map_data
       {
         active: h.number_with_delimiter(active),
