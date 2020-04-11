@@ -1,10 +1,10 @@
-.card
+#top-stats-mobile.card
   .card-header
     Summary
     %small.float-right
-      Updated 10 min ago
+      = stats.formatted_last_updated
   .card-body
-    %table.table.table-dark.table-bordered
+    %table.table.table-dark.table-bordered.table-responsive
       %tbody
         %tr
           %td Confirmed
