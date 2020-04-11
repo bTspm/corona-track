@@ -1,7 +1,10 @@
 .container-fluid
   -# = render partial: "corona/countries_dropdown", locals: { countries_for_select: @countries.for_select }
-  .mb-4
+
+  .d-none.d-sm-block
     = render partial: "top_stats", locals: { stats: @corona_data.stats }
+  .d-sm-none.mb-3
+    = render partial: "top_stats_mobile", locals: { stats: @corona_data.stats }
 
   .row
     .col-md-12.col-lg-7

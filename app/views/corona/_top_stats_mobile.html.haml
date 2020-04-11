@@ -1,0 +1,23 @@
+.card
+  .card-header
+    Summary
+    %small.float-right
+      Updated 10 min ago
+  .card-body
+    %table.table.table-dark.table-bordered
+      %tbody
+        %tr
+          %td Confirmed
+          %td.text-info= stats.readable_confirmed
+          %td Critical
+          %td.text-warning= stats.readable_critical
+        %tr
+          %td Recovered
+          %td.text-success= stats.readable_recovered
+          %td Tests
+          %td.text-primary= stats.readable_tests
+        %tr
+          %td Deaths
+          %td.text-danger= stats.readable_deaths
+          %td Mortality
+          %td.text-white= stats.readable_mortality_rate
