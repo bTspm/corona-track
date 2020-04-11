@@ -2,15 +2,15 @@ module Api
   class NinjaClient < Client
 
     def latest_global_stats
-      get("#{_base_url}/all")
+      _fetch_cached("#{__method__}") { get("#{_base_url}/all") }
     end
 
     def global_time_series
-      get("#{_base_url}/v2/historical?lastdays=all")
+      _fetch_cached("#{__method__}") { get("#{_base_url}/v2/historical?lastdays=all") }
     end
 
     def latest_countries_stats
-      get("#{_base_url}/countries?sort=cases")
+      _fetch_cached("#{__method__}") { get("#{_base_url}/countries?sort=cases") }
     end
 
     def latest_country_counts_by_code
@@ -18,6 +18,11 @@ module Api
     end
 
     private
+
+    def _fetch_cached(key, opts = {}, &block)
+      opts[:expires_in] = 10.minutes
+      Rails.cache.fetch(key, opts, &block)
+    end
 
     def _base_url
       "https://corona.lmao.ninja"
