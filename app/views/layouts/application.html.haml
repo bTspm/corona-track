@@ -7,20 +7,14 @@
 
     %script{src: 'https://code.highcharts.com/stock/highstock.js'}
     %script{src: "https://code.highcharts.com/maps/modules/map.js"}
-    %script{src: "https://code.highcharts.com/maps/modules/data.js"}
-    %script{src: "https://code.highcharts.com/maps/modules/exporting.js"}
-    %script{src: "https://code.highcharts.com/maps/modules/offline-exporting.js"}
     %script{src: "https://code.highcharts.com/mapdata/custom/world.js"}
-
-    %script{:defer => "defer", :src => "https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"}
-    %script{:defer => "defer", :src => "https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"}
-    %script{:defer => "defer", :src => "https://cdn.datatables.net/fixedcolumns/3.3.0/js/dataTables.fixedColumns.min.js"}
-    %link{href: "https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css", rel: "stylesheet"}
-    %link{href: "https://cdn.datatables.net/fixedcolumns/3.3.0/css/fixedColumns.bootstrap.min.css", rel: "stylesheet"}
 
     %script{crossorigin: "anonymous", integrity: "sha256-KzZiKy0DWYsnwMF+X1DvQngQ2/FxF7MF3Ff72XcpuPs=", src: "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"}
     %script{crossorigin: 'anonymous', integrity: 'sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=', src: 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'}
     %link{crossorigin:  "anonymous", href:  "https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.6/css/flag-icon.min.css", integrity:  "sha256-YjcCvXkdRVOucibC9I4mBS41lXPrWfqY2BnpskhZPnw=", rel:  "stylesheet"}/
+
+    %link{href: "https://cdn.datatables.net/v/bs4-4.1.1/dt-1.10.20/fh-3.1.6/r-2.2.3/datatables.min.css", rel: "stylesheet", type: "text/css"}/
+    %script{src: "https://cdn.datatables.net/v/bs4-4.1.1/dt-1.10.20/fh-3.1.6/r-2.2.3/datatables.min.js", type: "text/javascript"}
 
     %script{src: 'http://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js'}
     %script{src: 'https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js', type: 'text/javascript'}
@@ -35,4 +29,5 @@
   %body
     = render partial: 'layouts/header'
     = yield
+    = content_for :render_async
     = render partial: 'layouts/footer'

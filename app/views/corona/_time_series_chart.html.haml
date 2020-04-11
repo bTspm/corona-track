@@ -1,0 +1,6 @@
+%div{id: "#{selector}", style: 'height:350px; width:100%'}
+
+:javascript
+  $(document).ready(function() {
+      TimeSeries.initChart(JSON.parse('#{raw(chart_data.to_json)}'), "#{selector}");
+  });

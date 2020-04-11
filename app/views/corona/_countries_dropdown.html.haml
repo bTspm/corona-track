@@ -1,0 +1,16 @@
+.container
+  .card
+    .card-body
+      = select_tag('',
+                  options_from_collection_for_select(countries_for_select, :alpha2, :name, params["code"]&.upcase),
+                  prompt: "",
+                  class: "select2")
+
+:javascript
+  var argumentsFromServer = {
+  returnPath: "#{corona_country_path}"
+  };
+
+  $(document).ready(function() {
+    CountrySelect.init().bindEvents();
+  });

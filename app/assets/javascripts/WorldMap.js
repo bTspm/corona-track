@@ -31,6 +31,16 @@ var WorldMap = {
                 enabled: true,
             },
 
+            tooltip: {
+                formatter: function() {
+                    return '<b>' + this.point.name + '</b><br>' +
+                        'Confirmed: ' + this.point.confirmed + '<br>' +
+                        'Active: ' + this.point.active + '<br>' +
+                        'Recovered: ' + this.point.recovered + '<br>' +
+                        'Deaths: ' + this.point.deaths + '<br>';
+                }
+            },
+
             series: [
                 {
                     data: data,
