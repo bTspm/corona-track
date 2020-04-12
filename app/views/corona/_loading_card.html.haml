@@ -1,0 +1,9 @@
+- header = local_assigns.fetch(:header, 'Title')
+
+.card
+  .card-header
+    = header
+  .card-body.text-white.text-center
+    %h4
+      %i.fas.fa-spinner.fa-spin.mr-1
+      Loading...
