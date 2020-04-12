@@ -31,5 +31,8 @@ module CoronaTrack
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+
+    # GZip
+    config.middleware.insert_after ActionDispatch::Static, Rack::Deflater
   end
 end
