@@ -34,15 +34,16 @@ class Stat
   end
 
   def self.from_ninja_response(response)
-    args = {
+    args = response.merge({
       confirmed: response[:cases],
       confirmed_per_million: response[:casesPerOneMillion],
       datetime: _formatted_datetime(response[:updated]),
       deaths_per_million: response[:deathsPerOneMillion],
       new_confirmed: response[:todayCases],
       new_deaths: response[:todayDeaths],
+      recovered: response[:recovered] || 0,
       tests_per_million: response[:testsPerOneMillion]
-    }.merge(response)
+    })
 
     new(args)
   end
