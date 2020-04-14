@@ -22,7 +22,7 @@
             .col-12.d-flex.flex-row.align-items-center
               %h6= flag(item.region_data.alpha2)
               .pl-2
-                .text-left= item.region_data.formatted_name
+                .text-left= item.region_data.formatted_country_name_with_link
         %td.d-none.country-for-sort= item.region_data.name
         %td.d-none.country-alpha2-for-search= item.region_data.alpha2
         %td.d-none.country-alpha3-for-search= item.region_data.alpha3

@@ -10,6 +10,12 @@ class RegionsPresenter
       name.truncate_words(5)
     end
 
+    def formatted_country_name_with_link
+      return formatted_name if !country? || alpha2.blank?
+
+      h.link_to(formatted_name, h.corona_country_path(code: alpha2))
+    end
+
     def formatted_unofficial_names
       unofficial_names&.join(", ")
     end
