@@ -1,12 +1,12 @@
 .row.mb-3
-  .col.mb-3
+  .col.sm-12.col-md.mb-3
     .card
       .card-header
         Time Series
       .card-content
         = render partial: "time_series_chart", locals: { chart_data: time_series.time_series_chart_data,
                                                           selector: "time-series-counts" }
-  .col.mb-3
+  .col.sm-12.col-mdmb-3
     .card
       .card-header
         Mortality vs Recovery Rate
