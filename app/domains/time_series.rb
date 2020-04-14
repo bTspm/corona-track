@@ -42,6 +42,8 @@ class TimeSeries
   end
 
   def self._stats_grouped_by_dates(types)
+    return if types.blank?
+
     _get_all_dates(types.values).uniq.map do |date|
       args = { datetime: DateTime.strptime(date, "%m/%d/%y") }
       types.keys.each do |key|
