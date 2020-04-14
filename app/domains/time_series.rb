@@ -21,6 +21,15 @@ class TimeSeries
     new(args)
   end
 
+  def self.from_country_ninja_response(response)
+    args = {
+      region: RegionData.from_ninja_response(response),
+      statistics: _stats_grouped_by_dates(response[:timeline])
+    }
+
+    new(args)
+  end
+
   def self._get_all_dates(timelines)
     case timelines
     when Hash
@@ -43,6 +52,7 @@ class TimeSeries
   end
 
   def self._types_with_sum(timelines)
+    timelines = Array.wrap(timelines)
     timelines.reduce({}) do |sums, stats|
       sums.merge(stats) do |_, prev_hsh, new_hsh|
         prev_hsh.merge(new_hsh) { |_, prev_val, new_val| prev_val + new_val }

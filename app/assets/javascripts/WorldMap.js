@@ -24,7 +24,7 @@ var WorldMap = {
             },
 
             legend: {
-                enabled: false,
+                enabled: true,
             },
 
             mapNavigation: {

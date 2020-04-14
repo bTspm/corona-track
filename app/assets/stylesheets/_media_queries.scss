@@ -2,4 +2,20 @@
   .container-fluid {
     width: 100%
   }
+
+  .card-body {
+    padding: -50rem;
+  }
+}
+
+@media screen and (max-width: 1330px) {
+  h3 {
+    font-size: 1rem;
+  }
+}
+
+@media screen and (min-width: 720px) {
+  .card-content {
+    padding: 0.5rem
+  }
 }

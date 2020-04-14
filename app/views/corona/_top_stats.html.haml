@@ -1,66 +1,68 @@
-.row.text-center
-  .col-xs-12.col-sm-6.col-md.mb-2
-    .card.shadow-lg.card-info
-      .card-content
-        .card-body
-          %span
-            %h3
-              %i.fas.fa-head-side-cough
-            Confirmed
-          %div
-            %h3= stats.readable_confirmed
+.card
+  .card-body
+    .row
+      .col-xs-12.col-sm-4.col-xl
+        .card.text-center.card-info
+          .card-content
+            .card-body
+              %span
+                %h3
+                  %i.fas.fa-head-side-cough
+                Confirmed
+              %div
+                %h3= stats.readable_confirmed
 
-  .col-xs-12.col-sm-6.col-md.mb-2
-    .card.shadow-lg.card-warning
-      .card-content
-        .card-body
-          %span
-            %h3
-              %i.fas.fa-hospital-user
-            Critical
-          %div
-            %h3= stats.readable_critical
+      .col-xs-12.col-sm-4.col-xl
+        .card.border-top-0.border-right-0.border-left-0.text-center.card-warning
+          .card-content
+            .card-body
+              %span
+                %h3
+                  %i.fas.fa-hospital-user
+                Critical
+              %div
+                %h3= stats.readable_critical
 
-  .col-xs-12.col-sm-6.col-md.mb-2
-    .card.shadow-lg.card-success
-      .card-content
-        .card-body
-          %span
-            %h3
-              %i.fas.fa-running
-            Recovered
-          %div
-            %h3= stats.readable_recovered
+      .col-xs-12.col-sm-4.col-xl
+        .card.border-top-0.border-right-0.border-left-0.text-center.card-success
+          .card-content
+            .card-body
+              %span
+                %h3
+                  %i.fas.fa-running
+                Recovered
+              %div
+                %h3= stats.readable_recovered
 
-  .col-xs-12.col-sm-6.col-md.mb-2
-    .card.shadow-lg.card-primary
-      .card-content
-        .card-body
-          %span
-            %h3
-              %i.fas.fa-ambulance
-            Tests
-          %div
-            %h3= stats.readable_tests
+      .col-xs-12.col-sm-4.col-xl
+        .card.border-top-0.border-right-0.border-left-0.text-center.card-primary
+          .card-content
+            .card-body
+              %span
+                %h3
+                  %i.fas.fa-ambulance
+                Tests
+              %div
+                %h3= stats.readable_tests
 
-  .col-xs-12.col-sm-6.col-md.mb-2
-    .card.shadow-lg.card-danger
-      .card-content
-        .card-body
-          %span
-            %h3
-              %i.fas.fa-procedures
-            Deaths
-          %div
-            %h3= stats.readable_deaths
+      .col-xs-12.col-sm-4.col-xl
+        .card.border-top-0.border-right-0.border-left-0.text-center.card-danger
+          .card-content
+            .card-body
+              %span
+                %h3
+                  %i.fas.fa-procedures
+                Deaths
+              %div
+                %h3= stats.readable_deaths
 
-  .col-xs-12.col-sm-6.col-md.mb-2
-    .card.shadow-lg.card-white
-      .card-content
-        .card-body
-          %span
-            %h3
-              %i.fas.fa-skull-crossbones
-            Mortality Rate
-          %div
-            %h3= stats.readable_mortality_rate
+      .col-xs-12.col-sm-4.col-xl
+        .card.border-top-0.border-right-0.border-left-0.text-center.card-white
+          .card-content
+            .card-body
+              %span
+                %h3
+                  %i.fas.fa-skull-crossbones
+                Mortality
+              %div
+                %h3= stats.readable_mortality_rate

@@ -15,25 +15,25 @@ class RegionData
   end
 
   def country?
-    alpha2.present? && alpha3.present?
+    alpha2.present? || alpha3.present?
   end
 
   def global?
     name == "Global"
   end
 
-  def self.country_from_options(options)
-    country_code_or_name = options[:alpha2] || options[:alpha3] || options[:name]
-    country = _country_by_name_or_code(country_code_or_name)
+  def self.from_countries_ninja_response(response)
+    response.map { |item| from_ninja_response(item) }
+  end
 
-    args = {
-      alpha2: country&.alpha2 || options[:alpha2],
-      alpha3: country&.alpha3 || options[:alpha3],
-      name: country&.name || country_code_or_name,
-      unofficial_names: country&.unofficial_names
+  def self.from_ninja_response(response)
+    options = {
+      alpha2: response.dig("countryInfo", "iso2"),
+      alpha3: response.dig("countryInfo", "iso3"),
+      name: response.dig("country")
     }
 
-    new(args)
+    _from_options(options)
   end
 
   def self.global
@@ -47,5 +47,20 @@ class RegionData
       Country.find_country_by_alpha3(name_or_code)
   end
 
-  private_class_method :_country_by_name_or_code
+  def self._from_options(options)
+    country_code_or_name = options[:alpha2] || options[:alpha3] || options[:name]
+    country = _country_by_name_or_code(country_code_or_name)
+
+    args = {
+      alpha2: country&.alpha2 || options[:alpha2],
+      alpha3: country&.alpha3 || options[:alpha3],
+      name: country&.name || country_code_or_name,
+      unofficial_names: country&.unofficial_names
+    }
+
+    new(args)
+  end
+
+  private_class_method :_country_by_name_or_code,
+                       :_from_options
 end

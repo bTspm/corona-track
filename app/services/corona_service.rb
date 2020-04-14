@@ -11,6 +11,18 @@ class CoronaService
     _ninja_store.latest_countries_stats
   end
 
+  def countries_list
+    _ninja_store.countries_list.select(&:country?)
+  end
+
+  def latest_country_stats_by_country_code(code)
+    _ninja_store.latest_country_stats_by_country_code(code)
+  end
+
+  def country_time_series_by_country_code(code)
+    _ninja_store.country_time_series_by_country_code(code)
+  end
+
   private
 
   def _ninja_store

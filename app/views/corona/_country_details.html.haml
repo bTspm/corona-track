@@ -1,12 +1,14 @@
-%div
-  .card.mb-2
-    .card-header
-      Country / Other Stats
-    .card-body
-      = render partial: "countries_table", locals: { countries_corona_data: countries_corona_data }
-%div
-  .card.mb-2
-    .card-header
-      World Map of Cases
-    .card-body
-      = render partial: "map", locals: { map_data: countries_corona_data.map_data }
+.row.mb-3
+  .col-md-12.col-xl-7
+    .card.mb-2
+      .card-header
+        Country / Other Stats
+      .card-content
+        = render partial: "countries_table", locals: { countries_corona_data: countries_corona_data }
+
+  .col-md-12.col-xl-5
+    .card.mb-2
+      .card-header
+        World Map of Cases
+      .card-content
+        = render partial: "map", locals: { map_data: countries_corona_data.map_data }

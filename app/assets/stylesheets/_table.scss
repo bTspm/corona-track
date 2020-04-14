@@ -1,8 +1,12 @@
-table.dataTable thead tr {
+thead tr {
   background-color: #343a40;;
 }
 
 th, td {
   font-size: 0.8rem;
   text-align: center;
+}
+
+.table > tbody > tr > td {
+  vertical-align: middle;
 }

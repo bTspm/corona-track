@@ -1,15 +1,27 @@
 .container-fluid
-  = render partial: "corona/countries_dropdown", locals: { countries_for_select: @countries.for_select }
-  .mb-4
-  = render partial: "top_stats", locals: { active_cases: @country.readable_total_active,
-                                           mortality_rate: @country.mortality_rate,
-                                           recovery_rate: @country.recovery_rate,
-                                           total_confirmed: @country.readable_total_confirmed,
-                                           total_deaths: @country.readable_total_deaths,
-                                           total_recovered: @country.readable_total_recovered }
+  .mb-3
+    = render_async corona_countries_list_path(code: params[:code]) do
+      = render partial: "loading_card", locals: { header: "Countries" }
 
-  .mb-4
-  = render partial: "stats", locals: { comparisons_chart_data: @country.comparisons_chart_data,
-                                       counts_chart_data: @country.counts_chart_data,
-                                       map_data: @country.map_data,
-                                       pie_chart_data: @country.pie_chart_data }
+  .mb-3
+    .d-none.d-sm-block
+      = render partial: "top_stats", locals: { stats: @corona_data.stats }
+    .d-sm-none
+      = render partial: "top_stats_mobile", locals: { stats: @corona_data.stats }
+
+
+  .row.mb-3
+    .col-sm-12.col-lg-4
+      .card.mb-2
+        .card-header
+          Rate Distribution
+        .card-body
+          = render partial: "rate_distribution", locals: { chart_data: @corona_data.stats.pie_chart_data }
+
+    .col-sm-12.col-lg-8
+      = render_async corona_country_time_series_path(code: params[:code]) do
+        .row
+          .col.mb-3
+            = render partial: "loading_card", locals: { header: "Time Series" }
+          .col.mb-3
+            = render partial: "loading_card", locals: { header: "Mortality vs Recovery Rate" }

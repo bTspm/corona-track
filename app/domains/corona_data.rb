@@ -18,22 +18,16 @@ class CoronaData
 
   def self.from_ninja_countries_response(response)
     response.map do |item|
-      args = {
-        region_data: RegionData.country_from_options(_country_options(item)),
-        stats: Stat.from_ninja_response(item)
-      }
-
-      new(args)
+      from_ninja_country_response(item)
     end
   end
 
-  def self._country_options(response)
-    {
-      alpha2: response.dig("countryInfo", "iso2"),
-      alpha3: response.dig("countryInfo", "iso3"),
-      name: response.dig("country")
+  def self.from_ninja_country_response(response)
+    args = {
+      region_data: RegionData.from_ninja_response(response),
+      stats: Stat.from_ninja_response(response)
     }
-  end
 
-  private_class_method :_country_options
+    new(args)
+  end
 end

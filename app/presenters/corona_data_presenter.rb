@@ -2,12 +2,6 @@ class CoronaDataPresenter
   include Btspm::Presenters::Presentable
 
   class Scalar < Btspm::Presenters::ScalarPresenter
-    def formatted_last_updated
-      return "" if last_updated_at.blank?
-
-      "Last Updated: #{h.time_ago_in_words last_updated_at}"
-    end
-
     def stats
       @stats ||= StatsPresenter.present(data_object.stats, h)
     end
@@ -19,7 +13,7 @@ class CoronaDataPresenter
     def map_data
       return unless region_data.country?
 
-      region_data.global_map_data.merge(stats.map_data)
+      region_data.map_data_for_country.merge(stats.map_data)
     end
 
   end

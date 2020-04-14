@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   namespace :corona do
     get :countries_stats
     get :country
+    get :countries_list
+    get :country_time_series
     get :global_time_series
   end
 end

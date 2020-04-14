@@ -1,5 +1,7 @@
 .container-fluid
-  -# = render partial: "corona/countries_dropdown", locals: { countries_for_select: @countries.for_select }
+  .mb-3
+    = render_async corona_countries_list_path do
+      = render partial: "loading_card", locals: { header: "Countries" }
 
   .mb-3
     .d-none.d-sm-block
@@ -7,24 +9,26 @@
     .d-sm-none
       = render partial: "top_stats_mobile", locals: { stats: @corona_data.stats }
 
-  .row
-    .col-md-12.col-lg-7
-      = render_async corona_countries_stats_path do
+  = render_async corona_countries_stats_path do
+    .row.mb-3
+      .col-md-12.col-xl-7
         = render partial: "loading_card", locals: { header: "Country / Other Stats" }
-        .mb-3
+      .col-md-12.col-xl-5.mb-3
         = render partial: "loading_card", locals: { header: "World Map of Cases" }
 
 
+  .row.mb-3
+    .col-sm-12.col-lg-4
+      .card.mb-2
+        .card-header
+          Rate Distribution
+        .card-body
+          = render partial: "rate_distribution", locals: { chart_data: @corona_data.stats.pie_chart_data }
 
-    .col-md-12.col-lg-5
+    .col-sm-12.col-lg-8
       = render_async corona_global_time_series_path do
-        = render partial: "loading_card", locals: { header: "Time Series" }
-        .mb-3
-        = render partial: "loading_card", locals: { header: "Mortality vs Recovery Rate" }
-
-      %div
-        .card.mb-2
-          .card-header
-            Rate Distribution
-          .card-body
-            = render partial: "rate_distribution", locals: { chart_data: @corona_data.stats.pie_chart_data }
+        .row
+          .col.mb-3
+            = render partial: "loading_card", locals: { header: "Time Series" }
+          .col.mb-3
+            = render partial: "loading_card", locals: { header: "Mortality vs Recovery Rate" }

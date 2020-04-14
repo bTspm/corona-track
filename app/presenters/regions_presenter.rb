@@ -14,11 +14,14 @@ class RegionsPresenter
       unofficial_names&.join(", ")
     end
 
-    def global_map_data
+    def map_data_for_country
       { code3: alpha3, code: alpha2, name: formatted_chart_name }
     end
   end
 
   class Enum < Btspm::Presenters::EnumPresenter
+    def for_select
+      sort_by(&:name)
+    end
   end
 end

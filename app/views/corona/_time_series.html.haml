@@ -1,15 +1,15 @@
-%div
-  .card.mb-2
-    .card-header
-      Time Series
-    .card-body
-      = render partial: "time_series_chart", locals: { chart_data: time_series.time_series_chart_data,
-                                                        selector: "time-series-counts" }
-
-%div
-  .card.mb-2
-    .card-header
-      Mortality vs Recovery Rate
-    .card-body
-      = render partial: "time_series_chart", locals: { chart_data: time_series.mortality_vs_recovery_chart_data,
-                                                        selector: "time-series-comparisons-container"}
+.row.mb-3
+  .col.mb-3
+    .card
+      .card-header
+        Time Series
+      .card-content
+        = render partial: "time_series_chart", locals: { chart_data: time_series.time_series_chart_data,
+                                                          selector: "time-series-counts" }
+  .col.mb-3
+    .card
+      .card-header
+        Mortality vs Recovery Rate
+      .card-content
+        = render partial: "time_series_chart", locals: { chart_data: time_series.mortality_vs_recovery_chart_data,
+                                                          selector: "time-series-comparisons-container"}
