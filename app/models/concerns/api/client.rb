@@ -1,6 +1,6 @@
 module Api
   class Client
-    include Cacheable
+    include ::Cacheable
 
     def initialize
       @conn = Faraday.new do |conn|
