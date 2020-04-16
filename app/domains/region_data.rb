@@ -49,6 +49,7 @@ class RegionData
 
   SOUTH_KOREA_CODE = "KR"
   INDIA_CODE = "IN".freeze
+  STATE_NAME_REGEX = Regexp.new('\((\D{2})\)').freeze
 
   attr_reader *ATTRIBUTES
 
@@ -147,15 +148,16 @@ class RegionData
 
   def self._state_or_province_from_country_by_name(hex_country:, state_name:)
     hex_country.states.detect do |_, info|
-      info.name == state_name || info.translations.values.include?(state_name) ||
-      Array.wrap(info.unofficial_names).include?(state_name)
+      info.name == state_name ||
+        info.translations.values.include?(state_name) ||
+        Array.wrap(info.unofficial_names).include?(state_name)
     end
   end
 
   def self._name_by_country(country:, from_response:, from_info:)
     return from_response if country.south_korea? || from_info.blank?
 
-    from_info
+    STATE_NAME_REGEX =~ from_info ? from_info[0...-5] : from_info
   end
 
   private_class_method :_country_by_name_or_code,
