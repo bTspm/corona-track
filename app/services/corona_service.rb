@@ -23,7 +23,15 @@ class CoronaService
     _ninja_store.country_time_series_by_country_code(code)
   end
 
+  def latest_state_or_province_stats_by_country_code(code)
+    _bing_store.latest_state_or_province_stats_by_country_code(code)
+  end
+
   private
+
+  def _bing_store
+    BingStore.new
+  end
 
   def _ninja_store
     ::NinjaStore.new

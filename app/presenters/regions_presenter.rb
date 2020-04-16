@@ -21,13 +21,33 @@ class RegionsPresenter
     end
 
     def map_data_for_country
-      { code3: alpha3, code: alpha2, name: formatted_chart_name }
+      { alpha3: alpha3, code: alpha2, name: formatted_chart_name }
+    end
+
+    def map_data_for_state_or_province
+      { name: name }
+    end
+
+    def dropdown_country_data
+      [name, alpha2, { "data-lookup": _country_lookup }]
+    end
+
+    private
+
+    def _country_lookup
+      [alpha2, alpha3, unofficial_names].compact.join(', ')
+    end
+
+    def _parent
+      return if parent.blank?
+
+      @_parent ||= RegionsPresenter.present(parent, h)
     end
   end
 
   class Enum < Btspm::Presenters::EnumPresenter
     def for_select
-      sort_by(&:name)
+      sort_by(&:name).map(&:dropdown_country_data)
     end
   end
 end

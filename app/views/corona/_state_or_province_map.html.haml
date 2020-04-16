@@ -1,0 +1,5 @@
+#map-container{style: 'height:60vh;'}
+:javascript
+  $(document).ready(function() {
+    CountryMap.initChart(JSON.parse('#{raw(map_data.to_json)}'));
+  });

@@ -1,5 +1,7 @@
 module Api
   class Client
+    include Cacheable
+
     def initialize
       @conn = Faraday.new do |conn|
         conn.request :json

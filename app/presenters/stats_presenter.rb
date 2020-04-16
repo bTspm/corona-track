@@ -22,38 +22,61 @@ class StatsPresenter
       }
     end
 
+    def map_data_for_state_or_province
+      {
+        confirmed: readable_confirmed,
+        deaths: readable_deaths,
+        recovered: readable_recovered,
+        value: confirmed
+      }
+    end
+
     def readable_confirmed
+      return "" if confirmed.blank?
+
       h.number_with_delimiter confirmed
     end
 
     def readable_critical
+      return "" if critical.blank?
+
       h.number_with_delimiter critical
     end
 
     def readable_deaths
+      return "" if deaths.blank?
+
       h.number_with_delimiter deaths
     end
 
     def readable_mortality_rate
-      return "N/A" if deaths.blank? || confirmed.blank?
+      return "" if deaths.blank? || confirmed.blank?
 
       value = (deaths / confirmed.to_f) * 100
       h.number_to_percentage(value, precision: 2)
     end
 
     def readable_new_confirmed
+      return "" if new_confirmed.blank?
+
       "+#{h.number_with_delimiter new_confirmed}"
     end
 
     def readable_new_deaths
+      return "" if new_deaths.blank?
+
       "+#{h.number_with_delimiter new_deaths}"
     end
 
     def readable_recovered
+      return "" if recovered.blank?
+
       h.number_with_delimiter recovered
     end
 
     def readable_tests
+      return "" if tests.blank?
+
       h.number_with_delimiter tests
     end
 

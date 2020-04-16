@@ -4,6 +4,14 @@ class CoronaController < ApplicationController
     render partial: 'time_series', locals: { time_series: time_series }
   end
 
+  def state_or_province_stats
+    state_or_province_corona_data = present(
+      _service.latest_state_or_province_stats_by_country_code(params[:country_code]),
+      CoronaDataPresenter
+    )
+    render partial: 'state_or_province_details', locals: { state_or_province_corona_data: state_or_province_corona_data }
+  end
+
   def home
     @corona_data = present(_service.latest_global_stats, CoronaDataPresenter)
   end

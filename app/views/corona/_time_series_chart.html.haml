@@ -1,6 +1,9 @@
-%div{id: "#{selector}", style: 'height:350px; width:100%'}
+- if chart_data.blank?
+  No data found
+- else
+  %div{id: "#{selector}", style: 'height:350px; width:100%'}
 
-:javascript
-  $(document).ready(function() {
-      TimeSeries.initChart(JSON.parse('#{raw(chart_data.to_json)}'), "#{selector}");
-  });
+  :javascript
+    $(document).ready(function() {
+        TimeSeries.initChart(JSON.parse('#{raw(chart_data.to_json)}'), "#{selector}");
+    });

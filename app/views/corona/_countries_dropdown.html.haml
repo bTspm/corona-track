@@ -2,7 +2,7 @@
   .card
     .card-body
       = select_tag('',
-                  options_for_select((countries.for_select.map { |c| [c.name, c.alpha2, {"data-attribute-lookup": c.unofficial_names}] }), selected),
+                  options_for_select(countries.for_select, selected&.upcase),
                   prompt: "",
                   class: "select2")
 

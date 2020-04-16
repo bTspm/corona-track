@@ -1,0 +1,32 @@
+%table#state-or-province-data-table.display.table.table-hover.table-dark.w-100.table-sm
+  %thead
+    %tr.text-white
+      %th.w-12-5 State or Province
+      %th Confirmed
+      %th New Cases
+      %th Deaths
+      %th New Deaths
+      %th Recovered
+      %th Mortality Rate
+  %tbody
+    - state_or_province_corona_data.each do |item|
+      %tr
+        %td.text-left= item.region_data.name
+        %td.text-info= item.stats.readable_confirmed
+        %td.bg-info= item.stats.readable_new_confirmed
+        %td.text-danger= item.stats.readable_deaths
+        %td.bg-danger= item.stats.readable_new_deaths
+        %td.text-success= item.stats.readable_recovered
+        %td.text-white= item.stats.readable_mortality_rate
+
+:javascript
+  $(document).ready(function() {
+    $('#state-or-province-data-table').DataTable({
+            bInfo: false,
+            order: [[1, "desc"]],
+            paging: false,
+            scrollCollapse: true,
+            scrollY: "50vh",
+            scrollX: true,
+    });
+  });

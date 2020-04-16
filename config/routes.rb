@@ -9,5 +9,6 @@ Rails.application.routes.draw do
     get :countries_list
     get :country_time_series
     get :global_time_series
+    get :state_or_province_stats
   end
 end

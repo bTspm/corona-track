@@ -38,5 +38,12 @@
 
 :javascript
   $(document).ready(function() {
-    Table.initTable();
+    $('#countries-data-table').DataTable({
+            bInfo: false,
+            order: [[5, "desc"]],
+            paging: false,
+            scrollCollapse: true,
+            scrollY: "40vh",
+            scrollX: true,
+    });
   });

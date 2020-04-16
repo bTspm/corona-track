@@ -50,6 +50,18 @@ class Stat
     new(args)
   end
 
+  def self.from_bing_response(response)
+    args = {
+      confirmed: response[:totalConfirmed],
+      deaths: response[:totalDeaths],
+      new_confirmed: response[:totalConfirmedDelta],
+      new_deaths: response[:totalDeathsDelta],
+      recovered: response[:totalRecovered]
+    }
+
+    new(args)
+  end
+
   def self.from_ninja_timeseries_response(response)
     args = { confirmed: response[:cases] }.merge(response)
     new(args)

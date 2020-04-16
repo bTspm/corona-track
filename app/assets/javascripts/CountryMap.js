@@ -1,8 +1,8 @@
-var WorldMap = {
+var CountryMap = {
     initChart: function (data) {
         Highcharts.mapChart("map-container", {
             chart: {
-                map: "custom/world",
+                map: data.map_name,
                 backgroundColor: "#343a40",
                 style: {
                     color: "white",
@@ -11,7 +11,7 @@ var WorldMap = {
 
             colorAxis: {
                 min: 1,
-                max: 100000,
+                max: 1000,
                 type: "logarithmic",
             },
 
@@ -35,7 +35,6 @@ var WorldMap = {
                 formatter: function() {
                     return '<b>' + this.point.name + '</b><br>' +
                         'Confirmed: ' + this.point.confirmed + '<br>' +
-                        'Active: ' + this.point.active + '<br>' +
                         'Recovered: ' + this.point.recovered + '<br>' +
                         'Deaths: ' + this.point.deaths + '<br>';
                 }
@@ -43,14 +42,18 @@ var WorldMap = {
 
             series: [
                 {
-                    data: data,
-                    joinBy: ["iso-a3", "alpha3"],
+                    data: data.data,
+                    joinBy: ['name', 'name'],
                     name: "Corona Virus Stats",
                     states: {
                         hover: {
                             color: "#a4edba",
                         },
                     },
+                    dataLabels: {
+                        enabled: true,
+                        format: "{point.name} <br> {point.confirmed}"
+                    }
                 },
             ],
 

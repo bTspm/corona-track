@@ -4,19 +4,13 @@
       .card-header
         Time Series
       .card-content.text-white
-        - if time_series.time_series_chart_data
-          = render partial: "time_series_chart", locals: { chart_data: time_series.time_series_chart_data,
-                                                            selector: "time-series-counts" }
-        - else
-          No Data Found
+        = render partial: "time_series_chart", locals: { chart_data: time_series.time_series_chart_data,
+                                                          selector: "time-series-counts" }
 
   .col-xs-12.col.sm-12.col-md.mb-3
     .card
       .card-header
         Mortality vs Recovery Rate
       .card-content.text-white
-        - if time_series.time_series_chart_data
-          = render partial: "time_series_chart", locals: { chart_data: time_series.mortality_vs_recovery_chart_data,
-                                                            selector: "time-series-comparisons-container" }
-        - else
-          No Data Found
+        = render partial: "time_series_chart", locals: { chart_data: time_series.mortality_vs_recovery_chart_data,
+                                                          selector: "time-series-comparisons-container" }
