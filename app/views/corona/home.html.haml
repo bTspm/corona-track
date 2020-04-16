@@ -18,14 +18,14 @@
 
 
   .row.mb-3
-    .col-sm-12.col-lg-4
+    .col-xs-12.col-sm-12.col-lg-4
       .card.mb-2
         .card-header
           Rate Distribution
         .card-body
           = render partial: "rate_distribution", locals: { chart_data: @corona_data.stats.pie_chart_data }
 
-    .col-sm-12.col-lg-8
+    .col-xs-12.col-sm-12.col-lg-8
       = render_async corona_global_time_series_path do
         .row
           .col.mb-3
