@@ -1,0 +1,17 @@
+{
+  "country": "USA",
+  "provinces": [
+    "mainland"
+  ],
+  "timeline": {
+    "cases": {
+      "4/16/20": 100
+    },
+    "deaths": {
+      "4/16/20": 200
+    },
+    "recovered": {
+      "4/16/20": 300
+    }
+  }
+}

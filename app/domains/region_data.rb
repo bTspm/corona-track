@@ -47,8 +47,8 @@ class RegionData
     US: "unitedstates",
   }.with_indifferent_access.freeze
 
-  SOUTH_KOREA_CODE = "KR"
-  INDIA_CODE = "IN".freeze
+  SOUTH_KOREA_CODE = "KOR"
+  INDIA_CODE = "IND".freeze
   STATE_NAME_REGEX = Regexp.new('\((\D{2})\)').freeze
 
   attr_reader *ATTRIBUTES
@@ -61,7 +61,7 @@ class RegionData
   end
 
   def country?
-    alpha2.present? || alpha3.present?
+    alpha3.present?
   end
 
   def global?
@@ -69,42 +69,23 @@ class RegionData
   end
 
   def india?
-    country? && alpha2 == INDIA_CODE
+    alpha3&.upcase == INDIA_CODE
   end
 
   def south_korea?
-    country? && alpha2 == SOUTH_KOREA_CODE
+    alpha3&.upcase == SOUTH_KOREA_CODE
   end
 
-  def has_state_or_province_stats?
+  def state_stats?
     return false if !country? || alpha2.blank?
 
     COUNTRY_CODE_NAME_SLUG_MAPPING.keys.include? alpha2&.upcase
   end
 
-  def self.from_countries_ninja_response(response)
-    response.map { |item| from_ninja_response(item) }
-  end
-
-  def self.from_ninja_response(response)
-    options = {
-      alpha2: response.dig("countryInfo", "iso2"),
-      alpha3: response.dig("countryInfo", "iso3"),
-      name: response.dig("country")
-    }
-
-    _from_options(options)
-  end
-
-  def self.global
-    args = { name: "Global" }
-    new(args)
-  end
-
-  def self.from_bing_state_or_province_response(code:, response:)
+  def self.from_bing_state_response(code:, response:)
     hex_country = _country_by_name_or_code(code)
     parent_country = from_hex_country(hex_country)
-    state_code, state_info = _state_or_province_from_country_by_name(hex_country: hex_country, state_name: response[:displayName])
+    state_code, state_info = _state_from_country_by_name(hex_country: hex_country, state_name: response[:displayName])
     name = _name_by_country(country: parent_country, from_response: response[:displayName], from_info: state_info&.name)
     args = {
       name: name,
@@ -113,6 +94,10 @@ class RegionData
     }
 
     new(args)
+  end
+
+  def self.from_countries_ninja_response(response)
+    response.map { |item| from_ninja_response(item) }
   end
 
   def self.from_hex_country(country)
@@ -126,11 +111,28 @@ class RegionData
     new(args)
   end
 
+  def self.from_ninja_response(response)
+    options = {
+      alpha2: response.dig(:countryInfo, :iso2),
+      alpha3: response.dig(:countryInfo, :iso3),
+      name: response.dig(:country)
+    }
+
+    _from_options(options)
+  end
+
+  def self.global
+    args = { name: "Global" }
+    new(args)
+  end
+
+  # :nocov:
   def self._country_by_name_or_code(name_or_code)
     Country.find_country_by_name(name_or_code) ||
       Country[name_or_code] ||
       Country.find_country_by_alpha3(name_or_code)
   end
+  # :nocov:
 
   def self._from_options(options)
     country_code_or_name = options[:alpha2] || options[:alpha3] || options[:name]
@@ -139,19 +141,11 @@ class RegionData
     args = {
       alpha2: country&.alpha2 || options[:alpha2],
       alpha3: country&.alpha3 || options[:alpha3],
-      name: country&.name || country_code_or_name,
+      name: country&.name || options[:name],
       unofficial_names: country&.unofficial_names
     }
 
     new(args)
-  end
-
-  def self._state_or_province_from_country_by_name(hex_country:, state_name:)
-    hex_country.states.detect do |_, info|
-      info.name == state_name ||
-        info.translations.values.include?(state_name) ||
-        Array.wrap(info.unofficial_names).include?(state_name)
-    end
   end
 
   def self._name_by_country(country:, from_response:, from_info:)
@@ -160,6 +154,18 @@ class RegionData
     STATE_NAME_REGEX =~ from_info ? from_info[0...-5] : from_info
   end
 
+  # :nocov:
+  def self._state_from_country_by_name(hex_country:, state_name:)
+    hex_country.states.detect do |_, info|
+      info.name == state_name ||
+        info.translations.values.include?(state_name) ||
+        Array.wrap(info.unofficial_names).include?(state_name)
+    end
+  end
+  # :nocov:
+
   private_class_method :_country_by_name_or_code,
-                       :_from_options
+                       :_from_options,
+                       :_name_by_country,
+                       :_state_from_country_by_name
 end

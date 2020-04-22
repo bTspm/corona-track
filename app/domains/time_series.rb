@@ -1,5 +1,5 @@
 class TimeSeries
-  ATTRIBUTES = %i[region statistics].freeze
+  ATTRIBUTES = %i[stats].freeze
 
   attr_reader *ATTRIBUTES
 
@@ -10,22 +10,16 @@ class TimeSeries
     end
   end
 
-  def self.from_global_ninja_response(response)
-    timelines = response.map { |r| r[:timeline] }
-    types = _types_with_sum(timelines)
-    args = {
-      region: RegionData.global,
-      statistics: _stats_grouped_by_dates(types)
-    }
+  def self.from_country_ninja_response(response)
+    args = { stats: _stats_grouped_by_dates(response[:timeline]) }
 
     new(args)
   end
 
-  def self.from_country_ninja_response(response)
-    args = {
-      region: RegionData.from_ninja_response(response),
-      statistics: _stats_grouped_by_dates(response[:timeline])
-    }
+  def self.from_global_ninja_response(response)
+    timelines = response.map { |r| r[:timeline] }
+    types = _types_with_sum(timelines)
+    args = { stats: _stats_grouped_by_dates(types)}
 
     new(args)
   end

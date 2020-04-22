@@ -1,0 +1,60 @@
+{
+  "id": "world",
+  "displayName": "Global",
+  "areas": [
+    {
+      "id": "unitedstates",
+      "displayName": "United States",
+      "areas": [
+        {
+          "id": "newyork_unitedstates",
+          "displayName": "New York",
+          "areas": [
+            {
+              "id": "newyorkcity_newyork_unitedstates",
+              "displayName": "New York City",
+              "areas": [],
+              "totalConfirmed": 123146,
+              "totalDeaths": 11477,
+              "totalRecovered": 18018,
+              "totalRecoveredDelta": null,
+              "totalDeathsDelta": 1110,
+              "totalConfirmedDelta": 12721,
+              "lastUpdated": "2020-04-17T02:47:08.312Z",
+              "lat": 40.71455001831055,
+              "long": -74.00714111328125,
+              "parentId": "newyork_unitedstates"
+            }
+          ],
+          "totalConfirmed": 222284,
+          "totalDeaths": 14776,
+          "totalRecovered": 27598,
+          "totalRecoveredDelta": null,
+          "totalDeathsDelta": 746,
+          "totalConfirmedDelta": 8505,
+          "lastUpdated": "2020-04-17T02:47:08.312Z",
+          "lat": 42.93708038330078,
+          "long": -75.6106948852539,
+          "parentId": "unitedstates"
+        }
+      ],
+      "totalConfirmed": 675243,
+      "totalDeaths": 34562,
+      "totalRecovered": 55561,
+      "totalRecoveredDelta": 3365,
+      "totalDeathsDelta": 6163,
+      "totalConfirmedDelta": 33324,
+      "lastUpdated": "2020-04-17T02:47:08.312Z",
+      "lat": 39.495914459228516,
+      "long": -98.98998260498047,
+      "parentId": "world"
+    }
+  ],
+  "totalConfirmed": 2157108,
+  "totalDeaths": 144047,
+  "totalRecovered": 543519,
+  "totalRecoveredDelta": 32163,
+  "totalDeathsDelta": 9693,
+  "totalConfirmedDelta": 96181,
+  "lastUpdated": "2020-04-17T02:47:08.312Z"
+}
