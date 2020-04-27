@@ -2,8 +2,8 @@ require 'rails_helper'
 
 describe CoronaData do
   let(:args) { { region_data: region_data, stats: stats } }
-  let(:region_data) { double("region_data") }
-  let(:stats) { double("stats") }
+  let(:region_data) { double(:region_data) }
+  let(:stats) { double(:stats) }
 
   subject(:corona_data) { described_class.new(args) }
 
@@ -36,7 +36,7 @@ describe CoronaData do
   end
 
   describe ".from_ninja_countries_response" do
-    let(:country) { double("country") }
+    let(:country) { double(:country) }
     let(:response) { [country] }
 
     subject { described_class.from_ninja_countries_response(response) }
@@ -49,7 +49,7 @@ describe CoronaData do
   end
 
   describe ".from_ninja_country_response" do
-    let(:country) { double("country") }
+    let(:country) { double(:country) }
     let(:response) { country }
 
     subject { described_class.from_ninja_country_response(response) }
@@ -64,7 +64,7 @@ describe CoronaData do
   end
 
   describe ".from_ninja_global_response" do
-    let(:global) { double("global") }
+    let(:global) { double(:global) }
     let(:response) { global }
 
     subject { described_class.from_ninja_global_response(response) }

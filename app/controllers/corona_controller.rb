@@ -1,19 +1,7 @@
 class CoronaController < ApplicationController
-  def global_time_series
-    time_series = present(_service.global_time_series, TimeSeriesPresenter)
-    render partial: 'time_series', locals: { time_series: time_series }
-  end
-
-  def state_or_province_stats
-    state_or_province_corona_data = present(
-      _service.latest_state_or_province_stats_by_country_code(params[:country_code]),
-      CoronaDataPresenter
-    )
-    render partial: 'state_or_province_details', locals: { state_or_province_corona_data: state_or_province_corona_data }
-  end
-
-  def home
-    @corona_data = present(_service.latest_global_stats, CoronaDataPresenter)
+  def countries_list
+    countries = present(_service.countries_list, RegionsPresenter)
+    render partial: 'countries_dropdown', locals: { countries: countries, selected: params[:code] }
   end
 
   def countries_stats
@@ -21,18 +9,30 @@ class CoronaController < ApplicationController
     render partial: 'country_details', locals: { countries_corona_data: countries_corona_data }
   end
 
-  def countries_list
-    countries = present(_service.countries_list, RegionsPresenter)
-    render partial: 'countries_dropdown', locals: { countries: countries, selected: params[:code] }
+  def country_time_series
+    time_series = present(_service.country_time_series_by_country_code(params[:code]), TimeSeriesPresenter)
+    render partial: 'time_series', locals: { time_series: time_series }
   end
 
   def country
     @corona_data = present(_service.latest_country_stats_by_country_code(params[:code]), CoronaDataPresenter)
   end
 
-  def country_time_series
-    time_series = present(_service.country_time_series_by_country_code(params[:code]), TimeSeriesPresenter)
+  def global_time_series
+    time_series = present(_service.global_time_series, TimeSeriesPresenter)
     render partial: 'time_series', locals: { time_series: time_series }
+  end
+
+  def home
+    @corona_data = present(_service.latest_global_stats, CoronaDataPresenter)
+  end
+
+  def state_stats
+    state_corona_data = present(
+      _service.latest_state_stats_by_country_code(params[:country_code]),
+      CoronaDataPresenter
+    )
+    render partial: 'state_details', locals: { state_corona_data: state_corona_data }
   end
 
   private

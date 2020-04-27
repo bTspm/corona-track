@@ -13,14 +13,14 @@ describe Stat do
       tests: tests
     }
   end
-  let(:confirmed) { double("confirmed") }
-  let(:critical) { double("critical") }
-  let(:datetime) { double("datetime") }
-  let(:deaths) { double("deaths") }
-  let(:new_confirmed) { double("new_confirmed") }
-  let(:new_deaths) { double("new_deaths") }
-  let(:recovered) { double("recovered") }
-  let(:tests) { double("tests") }
+  let(:confirmed) { double(:confirmed) }
+  let(:critical) { double(:critical) }
+  let(:datetime) { double(:datetime) }
+  let(:deaths) { double(:deaths) }
+  let(:new_confirmed) { double(:new_confirmed) }
+  let(:new_deaths) { double(:new_deaths) }
+  let(:recovered) { double(:recovered) }
+  let(:tests) { double(:tests) }
 
   subject(:stat) { described_class.new(args) }
 

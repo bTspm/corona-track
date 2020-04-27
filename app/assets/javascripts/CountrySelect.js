@@ -26,7 +26,7 @@ var CountrySelect = {
         }
         return $(
             '<span><i class="flag-icon flag-icon-' +
-            country.element.value.toLowerCase() +
+            $(country.element).data("alpha2").toLowerCase() +
             '"></i> ' +
             country.text +
             "</span>"

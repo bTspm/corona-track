@@ -10,8 +10,8 @@ describe RegionData do
       unofficial_names: unofficial_names
     }
   end
-  let(:alpha2) { double("alpha2") }
-  let(:alpha3) { double("alpha3") }
+  let(:alpha2) { double(:alpha2) }
+  let(:alpha3) { double(:alpha3) }
   let(:hex_alpha2) { double(:hex_alpha2) }
   let(:hex_alpha3) { double(:hex_alpha3) }
   let(:hex_name) { double(:hex_name) }
@@ -25,9 +25,9 @@ describe RegionData do
       unofficial_names: hex_unofficial_names
     }
   end
-  let(:name) { double("name") }
-  let(:parent) { double("parent") }
-  let(:unofficial_names) { double("unofficial_names") }
+  let(:name) { double(:name) }
+  let(:parent) { double(:parent) }
+  let(:unofficial_names) { double(:unofficial_names) }
 
   before :each do
     allow(described_class).to receive(:_country_by_name_or_code) { hex_country }
