@@ -4,11 +4,11 @@ Rails.application.routes.draw do
   root "corona#home"
 
   namespace :corona do
-    get :countries_stats
-    get :country
     get :countries_list
+    get :countries_stats
     get :country_time_series
+    get :country
     get :global_time_series
-    get :state_or_province_stats
+    get :state_stats
   end
 end
