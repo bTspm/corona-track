@@ -1,9 +1,8 @@
 module Api
   class NinjaClient < Client
-
-    def latest_global_stats
-      fetch_cached("#{self.class.name}/#{__method__}") do
-        get("#{_base_url}/#{_version}/all")
+    def country_time_series_by_country_code(code)
+      fetch_cached("#{self.class.name}/#{__method__}/#{code}") do
+        get("#{_base_url}/#{_version}/historical/#{code}?lastdays=all")
       end
     end
 
@@ -25,9 +24,9 @@ module Api
       end
     end
 
-    def country_time_series_by_country_code(code)
-      fetch_cached("#{self.class.name}/#{__method__}/#{code}") do
-        get("#{_base_url}/#{_version}/historical/#{code}?lastdays=all")
+    def latest_global_stats
+      fetch_cached("#{self.class.name}/#{__method__}") do
+        get("#{_base_url}/#{_version}/all")
       end
     end
 

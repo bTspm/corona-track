@@ -9,8 +9,8 @@
     .d-sm-none
       = render partial: "top_stats_mobile", locals: { stats: @corona_data.stats }
 
-  - if @corona_data.region_data.has_state_or_province_stats?
-    = render_async corona_state_or_province_stats_path(country_code: @corona_data.region_data.alpha2) do
+  - if @corona_data.region_data.state_stats?
+    = render_async corona_state_stats_path(country_code: @corona_data.region_data.alpha2) do
       .row.mb-3
         .col-md-12.col-xl-7
           = render partial: "loading_card", locals: { header: "State or Province Stats" }

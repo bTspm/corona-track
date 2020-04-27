@@ -9,7 +9,7 @@
       %th Recovered
       %th Mortality Rate
   %tbody
-    - state_or_province_corona_data.each do |item|
+    - state_corona_data.each do |item|
       %tr
         %td.text-left= item.region_data.name
         %td.text-info= item.stats.readable_confirmed
