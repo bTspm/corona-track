@@ -22,7 +22,7 @@ class StatsPresenter
       }
     end
 
-    def map_data_for_state_or_province
+    def map_data_for_state
       {
         confirmed: readable_confirmed,
         deaths: readable_deaths,
@@ -50,10 +50,9 @@ class StatsPresenter
     end
 
     def readable_mortality_rate
-      return "" if deaths.blank? || confirmed.blank?
+      return "" if mortality_rate.blank?
 
-      value = (deaths / confirmed.to_f) * 100
-      h.number_to_percentage(value, precision: 2)
+      h.number_to_percentage(mortality_rate, precision: 2)
     end
 
     def readable_new_confirmed

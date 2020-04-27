@@ -2,12 +2,8 @@ class CoronaDataPresenter
   include Btspm::Presenters::Presentable
 
   class Scalar < Btspm::Presenters::ScalarPresenter
-    def stats
-      @stats ||= StatsPresenter.present(data_object.stats, h)
-    end
-
-    def region_data
-      @region_data ||= RegionsPresenter.present(data_object.region_data, h)
+    def map_data_for_state
+      region_data.map_data_for_state.merge(stats.map_data_for_state)
     end
 
     def map_data
@@ -16,21 +12,25 @@ class CoronaDataPresenter
       region_data.map_data_for_country.merge(stats.map_data)
     end
 
-    def map_data_for_state_or_province
-      region_data.map_data_for_state_or_province.merge(stats.map_data_for_state_or_province)
+    def region_data
+      @region_data ||= RegionsPresenter.present(data_object.region_data, h)
+    end
+
+    def stats
+      @stats ||= StatsPresenter.present(data_object.stats, h)
     end
   end
 
   class Enum < Btspm::Presenters::EnumPresenter
-    def map_data
-      map(&:map_data).compact.uniq
-    end
-
-    def map_data_for_state_or_province
+    def map_data_for_state
       {
-        data: map(&:map_data_for_state_or_province).compact.uniq,
+        data: map(&:map_data_for_state).compact,
         map_name: _map_name
       }
+    end
+
+    def map_data
+      map(&:map_data).compact
     end
 
     private

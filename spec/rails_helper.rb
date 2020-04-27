@@ -50,7 +50,7 @@ RSpec.configure do |config|
   # Filter lines from Rails gems in backtraces.
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
-  # config.filter_gems_from_backtrace("gem name")
+  # config.filter_gems_from_backtrace("gem name)
 end
 
 FIXTURE_PATH = "#{::Rails.root}/spec/fixtures"
@@ -70,7 +70,8 @@ end
 def view_context
   return @view_context if @view_context.present?
 
-  view_context = ActionController::Base.new.view_context
+  view_context = ActionController::Base.new.send(:view_context)
   view_context.class.include(ApplicationHelper)
+  view_context.class.include(Rails.application.routes.url_helpers)
   @view_context ||= view_context
 end
