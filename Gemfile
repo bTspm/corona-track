@@ -61,7 +61,6 @@ group :test do
   gem "simplecov"
   gem "rspec-rails"
   gem "rspec"
-  gem "codecov", :require => false, :group => :test
 end
 
 gem "countries", require: "countries/global"
