@@ -87,3 +87,4 @@ class Stat
     confirmed.blank? || recovered.blank? || confirmed.zero? || recovered.zero?
   end
 end
+
