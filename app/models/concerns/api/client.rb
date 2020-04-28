@@ -16,34 +16,14 @@ module Api
       _parse_response(@conn.get(url))
     end
 
-    protected
-
-    def _parse_response(response)
-      Api::Response.new(response)
-    end
-  end
-
-  class Response
-    attr_reader :body,
-                :headers,
-                :status,
-                :success
-
-    def initialize(response)
-      @body = _build_body(response)
-      @headers = response.headers
-      @status = response.status
-      @success = response.success?
-    end
-
     private
 
-    def _build_body(response)
+    def _parse_response(response)
       body = response.body
       if body.is_a? Hash
         body.with_indifferent_access
       elsif body.is_a? Array
-        body.map(&:with_indifferent_access)
+        body.map { |b| b.is_a?(Hash) ? b.with_indifferent_access : b }
       else
         body
       end
