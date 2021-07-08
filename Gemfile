@@ -53,7 +53,7 @@ gem "render_async"
 
 gem "faraday"
 gem "faraday_middleware"
-gem "webmock"
+gem "webmock", ">= 3.4.2"
 
 gem "btspm"
 
