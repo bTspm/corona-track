@@ -51,7 +51,7 @@ gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem "haml"
 gem "render_async"
 
-gem "faraday"
+gem "faraday", ">= 2.14.1"
 gem "faraday_middleware"
 gem "webmock"
 
